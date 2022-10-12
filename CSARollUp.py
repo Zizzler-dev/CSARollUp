@@ -1,19 +1,10 @@
 from queue import Empty
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
-import fillpdf
-from fillpdf import fillpdfs
 from openpyxl import load_workbook
-from PyPDF2 import PdfFileMerger
-import pdfkit
-from win32com import client
-import xlsxwriter
-from io import BytesIO
 
 
-merger = PdfFileMerger()
+
 
 def highlight_cols(x):              
     df = x.copy()
@@ -201,12 +192,6 @@ if(count > 0 and Current_Monthly_Cost > 0):
     workbook.save('test.xlsx')
 
     test = pd.read_excel('test.xlsx')
-
-    fillpdfs.write_fillable_pdf('CSA_template.pdf', 'new.pdf', data_dict)
-    fig, ax =plt.subplots(figsize=(12,4))
-    ax.axis('tight')
-    ax.axis('off')
-    the_table = ax.table(cellText=chartC.values,colLabels=chartC.columns,loc='center')
 
 
     with open("new.pdf", "rb") as pdf_file:
