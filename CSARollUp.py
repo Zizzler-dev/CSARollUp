@@ -89,19 +89,19 @@ if(count > 0 and Current_Monthly_Cost > 0):
             premium_30 = st.number_input('Age 30 Premium for Class '+ class_letter)
 
             
-            st.write('Benchmark Plan: ', plan)
-            st.write('County: ', county)
+            #st.write('Benchmark Plan: ', plan)
+            #st.write('County: ', county)
             temp2 = temp[temp['name'] == plan].reset_index()
-            st.write(temp2)
+            #st.write(temp2)
             av = temp2['actuarial_value'][0]
-            st.write('AV', temp2['actuarial_value'][0])
+            #st.write('AV', temp2['actuarial_value'][0])
             single_deductible = temp2['individual_medical_deductible'][0]
             single_deductible = single_deductible[single_deductible.find(':')+1 : single_deductible.find('/')]
-            st.write('Single Deductible: ', temp2['individual_medical_deductible'][0])
+            #st.write('Single Deductible: ', temp2['individual_medical_deductible'][0])
             temp3 = prices[prices['rating_area_id'].str.slice(0,2,1) == state]
             #st.write(temp3)
             sbc = temp2['summary_of_benefits_url'][0] 
-            st.write('SBC: ', temp2['summary_of_benefits_url'][0])
+            #st.write('SBC: ', temp2['summary_of_benefits_url'][0])
             #st.write('Age 30 Premium: ', temp4[['age_30','id', 'rating_area_id']][temp4['rating_area_id'].str.slice(0,2,1) == state])
             chartC = chartC.append({'Class' : class_letter , "EE's" : round(Emp), 'People' : round(Covered), 'Age 30 Premium': round(premium_30, 2), 'County': county, 'Benchmark Plan' : plan, 'AV': round(av, 2), 'Single Deductible' : single_deductible, 'SBC': sbc},  ignore_index = True)
             sheet.cell(row_index, col_index, value = class_letter)
